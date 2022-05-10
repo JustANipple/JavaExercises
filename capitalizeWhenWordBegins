@@ -1,0 +1,23 @@
+public class JadenCase {
+
+	public String toJadenCase(String phrase) {
+		// TODO put your code below this comment
+    
+    if (phrase == null || phrase.isEmpty()) {
+                    return null;
+                }
+		char[] cap = phrase.toCharArray();
+                for (int c = 0; c < cap.length; c++) {
+                    if (c == 0) {
+                        cap[c] = Character.toUpperCase(cap[c]);
+                    }
+                    if (cap[c] == ' ') {
+                        c++;
+                        cap[c] = Character.toUpperCase(cap[c]);
+                    }
+                }
+                
+		return String.valueOf(cap);
+	}
+
+}
