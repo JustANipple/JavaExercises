@@ -1,30 +1,4 @@
-public static String stringMerge(String s1, String s2, char letter) {
+public static String stringMerge(String s1, String s2, char letter) {    
     
-    //create an array of Chars to scroll
-    char[] firstStr = s1.toCharArray();
-    char[] secondStr = s2.toCharArray();
-    
-    //create a new String that will contain the result
-    StringBuilder result = new StringBuilder();
-    
-    //write the first string until the letter is found
-    int i = 0;    
-    while(true) {
-        if (firstStr[i] != letter) {
-            result.append(firstStr[i]);                
-        } else if (firstStr[i] == letter){
-            result.append(firstStr[i]);
-            break;
-        }
-        i++;
-    }
-    
-    //write the second string from the letter to the end
-    int j = s2.indexOf(letter, 0) + 1;
-    while(j < secondStr.length) {
-        result.append(secondStr[j]);
-        j++;
-    }
-    
-    return String.valueOf(result);
+    return s1.substring(0, s1.indexOf(letter)) + s2.substring(s2.indexOf(letter));
   }
