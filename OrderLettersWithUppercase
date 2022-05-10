@@ -1,0 +1,54 @@
+public static String findChildren(String text) {
+        
+        //order CbcBcbaA
+        ArrayList<Character> toOrg = new ArrayList<>();
+        
+        //insert chars to ArrayList
+        char[] temp = text.toCharArray();
+        for (int i = 0; i < temp.length; i++) {
+            toOrg.add(temp[i]);
+        }
+        System.out.println(toOrg);
+        
+        
+        
+        StringBuilder built = new StringBuilder();
+        
+        //find the lowest Uppercase letter, append it and remove
+        int size = toOrg.size();
+        while (size > 0) {
+        int index = 0;
+        char lowest = 'z';
+        for (int c = 0; c < toOrg.size(); c++) {
+            if (toOrg.get(c) < lowest && Character.isUpperCase(toOrg.get(c))) {
+                lowest = toOrg.get(c);
+                index = c;
+                System.out.println("Now the lowest is " + toOrg.get(c));
+            }
+        } 
+        built.append(toOrg.get(index));
+        toOrg.remove(index);
+        System.out.println(toOrg);
+        size--; 
+        
+        //find the Lowercase letter and append it nearby the Uppercase
+        for (int c = 0; c < toOrg.size(); c++) {
+          if (!Character.isUpperCase(toOrg.get(c))) {
+              if (toOrg.get(c) == Character.toLowerCase(lowest)) {
+                  built.append(toOrg.get(c));
+                  toOrg.remove(c);
+                  System.out.println("New ordered list: " + built);
+                  c--;
+              }
+          }          
+        }
+            if (toOrg.isEmpty()) {
+                break;
+            }
+        }
+        
+        
+        
+        
+        return built.toString();
+    }
