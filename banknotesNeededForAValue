@@ -1,0 +1,25 @@
+public class ATM {
+  
+  public static int solve(int n) {
+  		      
+      int banknotes = 0;
+      // Your code here
+      
+      //put all the possible banknotes in an array
+      int[] anyBn = new int[] {500, 200, 100, 50, 20, 10};
+      
+      
+      //find how many banknotes are needed for every type of banknote
+      for (int banknote : anyBn) {
+          while (n / banknote > 0) {              
+              banknotes++;
+              n -= banknote;
+          }          
+      }
+      if (n > 0) {
+          return -1;
+      }
+      
+      return banknotes;
+      }
+  }
