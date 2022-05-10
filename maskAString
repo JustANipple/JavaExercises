@@ -1,0 +1,13 @@
+public static String maskify(String str) {
+        
+        if (str.isEmpty() || str.length() < 5) {
+            return str;
+        }
+        
+        char[] toChar = str.toCharArray();
+        for (int c = 0; c < toChar.length -4; c++) {
+            toChar[c] = '#';
+        }
+        
+        return String.valueOf(toChar);
+    }
