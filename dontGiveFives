@@ -1,0 +1,14 @@
+public static int dontGiveMeFive(int start, int end) {
+        
+        ArrayList<Integer> notFive = new ArrayList<>();
+        int counter = 0;
+        for (int n = start; n <= end; n++) {
+            if (String.valueOf(n).contains("5")) {
+                continue;
+            }
+            notFive.add(n);
+            counter++;
+        }
+        
+      return counter;  
+  }
