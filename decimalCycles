@@ -1,0 +1,63 @@
+public static int cycle(int n) {
+        // your code
+        
+        System.out.println("Making 1/" + n);
+        double decimal = (double)1/n;
+        System.out.println("The decimal is: " + decimal);
+        
+        System.out.println("Does the decimal part have a cycle?");
+        System.out.println("To convert it to CharArray, we need to have the string of it first");
+        String convInt = String.valueOf(decimal);
+        System.out.println("Now the double is a String: " + convInt);
+        char[] convStr = convInt.substring(2) .toCharArray();
+        System.out.print("Now the String is a CharArray with the 0. removed: ");
+        for (int i = 0; i < convStr.length; i++){
+            System.out.print(convStr[i]);
+        }
+        System.out.println("");
+        System.out.println("Checking if decimal parts repeat");
+        System.out.println("Initialize a StringBuilder to store the first part that repeats");
+        ArrayList<Character> mainPt = new ArrayList<>();
+        System.out.println("Checking for the first part:");
+        int cycleOne = 0;
+        int index = 0;
+        for (int c = 0; c < convStr.length; c++) {
+            System.out.println("The first part is: " + mainPt);             
+            if (mainPt.contains(convStr[c])) {
+                System.out.println("The first part already contains " + convStr[c]);                
+                break;
+            } else {
+                System.out.println("The first part doesn't contain " + convStr[c]);                
+                mainPt.add(convStr[c]);
+                cycleOne++;
+                index = c;
+            }
+        }
+        System.out.println("The first part is: " + mainPt + " and its cycle is long " + cycleOne);
+        
+        System.out.println("Now we store the second part that repeats");
+        ArrayList<Character> secondPt = new ArrayList<>();
+        System.out.println("Checking for the second part:");
+        int cycleTwo = 0;
+        for (int i = index +1; i < convStr.length; i++) {
+            System.out.println("The second part is: " + mainPt);
+            if (secondPt.contains(convStr[i])) {
+                System.out.println("The second part already contains " + convStr[i]);                
+                break;
+            } else {
+                System.out.println("The second part doesn't contain " + convStr[i]);                
+                secondPt.add(convStr[i]);
+                cycleTwo++;
+            }
+        }
+        System.out.println("The second part is: " + secondPt + " and its cycle is long " + cycleTwo);
+        
+        System.out.println("Checking if " + mainPt + " and " + secondPt + " are the same:");
+        if (mainPt.equals(secondPt)) {
+            System.out.println("YES");
+            return cycleOne;
+        } else {
+            System.out.println("NO");
+            return -1;
+        }
+    }
