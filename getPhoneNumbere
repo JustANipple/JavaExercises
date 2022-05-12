@@ -1,0 +1,15 @@
+StringBuilder telNum = new StringBuilder();
+        
+        telNum.append("(");
+        for (int i = 0; i < 3; i++) {
+            telNum.append(numbers[i]);
+        }
+        telNum.append(") ");
+        for (int i = 3; i < numbers.length; i++) {
+            telNum.append(numbers[i]);
+            if (i == 5) {
+                telNum.append("-");
+            }
+        }
+               
+        return telNum.toString();
