@@ -1,0 +1,21 @@
+public class Solution {
+
+    public static String camelCase(String str) {
+        if (str.isEmpty()) {
+            return "";
+        }
+        String s = str.trim();
+        String[] splits = s.split("\\s+");
+        StringBuilder toCamel = new StringBuilder();
+        for (int i = 0; i < splits.length; i++) {
+            if (splits.length == 0) {
+                splits[i] = splits[i].toUpperCase();
+            } else {
+                splits[i] = splits[i].trim().substring(0,1).toUpperCase() + splits[i].substring(1);
+                toCamel.append(splits[i]);
+            }
+        }
+        return toCamel.toString();
+    }
+
+}
