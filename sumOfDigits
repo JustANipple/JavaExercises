@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public static int digital_root(int n) {
+         
+         while (n >= 10) {
+         System.out.println("The number you've given is: " + n);
+         ArrayList<Integer> digits = new ArrayList<>();
+         int sum = 0;
+         while (n != 0) {
+             digits.add(n % 10);
+             n /= 10;
+         }
+         System.out.println("The digits of this number are: " + digits);
+         for (int digit : digits) {
+             sum += digit;
+         }
+         System.out.println("The sum of these digits is: " + sum);
+         n = sum;
+         }
+        return n;
+    }
