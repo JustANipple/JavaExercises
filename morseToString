@@ -1,0 +1,17 @@
+//this method refers to a MorseCode dictionary (MergeCode.get(split))
+
+public static String decode(String morseCode) {
+        // your brilliant code here, remember that you can access the preloaded Morse code table through MorseCode.get(code)
+        
+        String trim = morseCode.trim();
+        String[] splits = trim.split(" ");
+        StringBuilder decoded = new StringBuilder();
+        for (String split : splits) {
+            if (split.isBlank()) {
+                decoded.append(" ");
+            } else {
+                decoded.append(MergeCode.get(split));
+            }
+        }
+        return decoded.toString().replaceAll("  ", " ");
+    }
