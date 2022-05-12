@@ -1,0 +1,12 @@
+public static int countBits(int n){
+            
+            int sum = 0;
+            String bin = Integer.toBinaryString(n);
+            System.out.println(bin);
+            char[] bits = bin.toCharArray();
+            for (char bit : bits) {
+                sum += Character.getNumericValue(bit);
+            }
+                
+            return sum;
+	}
