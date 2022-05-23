@@ -1,0 +1,19 @@
+public static int amountOfPages(int summary) {
+        
+        int c = 0;
+        int i = 1;
+        int keepC = 1;
+        int n = 0;
+        
+        while (c < summary) {
+            while (i != 0) {
+                i /= 10;
+                c++;
+            }
+            keepC++;
+            i = keepC;
+            n++;
+        }
+        
+    return n;
+  }
