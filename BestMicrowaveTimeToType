@@ -1,0 +1,70 @@
+public static String getBestCombination(int time) {
+        
+        
+        // standard method to count minutes (seconds up to 59)
+        int minS = 0;
+        int secS = time;        
+        StringBuilder numS = new StringBuilder();
+        while (secS >= 60) {
+            secS -= 60;
+            minS++;
+        }
+        numS.append(minS).append(secS);
+        System.out.println("Standard minutes: " + minS + " and seconds: " + secS + " = " + numS);
+        
+        // alternative method to count minutes (seconds up to 99)
+        int minA = 0;
+        int secA = time;
+        StringBuilder numA = new StringBuilder();
+        while (secA >= 100) {
+            secA -= 60;
+            minA++;
+        }
+        if (minA != 0) {
+            numA.append(minA).append(secA);
+        } else {
+            numA.append(secA);
+        }
+        System.out.println("Alternative minutes: " + minA + " and seconds: " + secA + " = " + numA);
+        
+        //number of different moves on standard
+        int movesS = 0;
+        for (int i = 0; i < numS.length(); i++) {
+            if (i + 1 < numS.length()) {
+                if (numS.charAt(i) != numS.charAt(i+1)) {
+                movesS++;
+                }
+            }
+        }
+        System.out.println("Moves from standard are: " + movesS++);
+        
+        //number of different moves on Alternative
+        int movesA = 0;
+        for (int i = 0; i < numA.length(); i++) {
+            if (i + 1 < numA.length()) {
+                if (numA.charAt(i) != numA.charAt(i+1)) {
+                movesA++;
+                }
+            }
+        }
+        System.out.println("Moves from alternative are: " + movesA++);
+        
+        if (movesS < movesA) {
+            System.out.println("Standard is the way for moves");
+            return numS.toString();
+        } else if (movesS > movesA) {
+            System.out.println("Alternative is the way for moves");
+            return numA.toString();
+        } else if (numS.length() < numA.length()) {
+            System.out.println("Standard is the way for length");
+            return numS.toString();
+        } else if (numS.length() > numA.length()){
+            System.out.println("Alternative is the way for length");
+            return numA.toString();
+        } else if (numS.length() == numA.length() && movesS == movesA) {
+            System.out.println("methods are the same, so pick the standard");
+            return numS.toString();
+        }
+        
+        return "MAINTENANCE";
+    }
