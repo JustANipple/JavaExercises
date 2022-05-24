@@ -9,7 +9,18 @@ public static String getBestCombination(int time) {
             secS -= 60;
             minS++;
         }
-        numS.append(minS).append(secS);
+        //append 00 if the second or minute is 0, so the clock is right
+        if (minS != 0) {
+            numS.append(minS);
+        }
+        if (secS != 0) {
+            if (secS < 10 && minS != 0) {
+                numS.append("0");
+            }
+            numS.append(secS);
+        } else {
+            numS.append("00");
+        }
         System.out.println("Standard minutes: " + minS + " and seconds: " + secS + " = " + numS);
         
         // alternative method to count minutes (seconds up to 99)
@@ -20,10 +31,17 @@ public static String getBestCombination(int time) {
             secA -= 60;
             minA++;
         }
+        //append 00 if the second or minute is 0, so the clock is right
         if (minA != 0) {
-            numA.append(minA).append(secA);
-        } else {
+            numA.append(minA);
+        }
+        if (secA != 0) {
+            if (secA < 10 && minA != 0) {
+                numA.append("0");
+            }
             numA.append(secA);
+        } else {
+            numA.append("00");
         }
         System.out.println("Alternative minutes: " + minA + " and seconds: " + secA + " = " + numA);
         
