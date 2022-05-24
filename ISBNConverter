@@ -1,0 +1,28 @@
+public static String isbnConverter(String isbn) {
+        
+        System.out.println("You entered " + isbn);
+        StringBuilder conv = new StringBuilder();
+        int sum = 0;
+        String sub = isbn.substring(0,12);
+        System.out.println(sub);
+        conv.append("978-").append(sub);
+        System.out.println(conv);
+        String s = conv.toString().replaceAll("-", "").trim();
+        int i = 0;
+        while (i < s.length()) {
+            sum += Character.getNumericValue(s.charAt(i)) * 1;
+            i++;
+            if (i == s.length()) {
+                break;
+            }
+            sum += Character.getNumericValue(s.charAt(i)) * 3;
+            i++;
+        }
+        sum %= 10;
+        if (sum == 0) {
+            return conv.toString().trim() + "0";
+        } else {
+            sum = 10 - sum;
+            return conv.toString().trim() + sum;
+        }
+  }
