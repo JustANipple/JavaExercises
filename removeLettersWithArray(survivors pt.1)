@@ -1,0 +1,8 @@
+public static String lastSurvivor(String letters, int[] coords) {
+        
+        StringBuilder str = new StringBuilder(letters);
+        for (Integer coord : coords) {
+           str = str.deleteCharAt(coord); 
+        }
+        return str.toString();
+    }
