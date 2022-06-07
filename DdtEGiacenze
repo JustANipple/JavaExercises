@@ -1,0 +1,83 @@
+
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        
+        boolean found = false;
+        ArrayList<String> toOrder = new ArrayList<>();
+                        
+        //scorro le righe del AnyFile
+        try (Scanner ofDdt = new Scanner(Paths.get("Ddt2.CSV"))) {
+                        
+            while (ofDdt.hasNextLine()) {
+                
+                found = false;                
+                String[] ddtParts = ofDdt.nextLine().split(";");
+                String ddtCode = ddtParts[0];
+                String ddtDesc = ddtParts[1];
+                //divido il numero dalla virgola
+                String[] ddtTemp = ddtParts[2].split(",");
+                int ddtQty = Integer.valueOf(ddtTemp[0]);
+                
+                //per ogni riga del AnyFile, scorro tutte le righe della giacenza
+                try (Scanner ofGiac = new Scanner(Paths.get("Giacenza.CSV"))) {
+                    
+                    while (ofGiac.hasNextLine()) {
+                        //salvo le parole di ogni riga per poterle confrontare
+                        String[] giacParts = ofGiac.nextLine().split(";");
+                        String giacCode = giacParts[0];
+                        //la descrizione non mi serve
+                        //String giacDesc = giacParts[1];
+                        int giacQty = Integer.valueOf(giacParts[2]);
+                                                
+                        //se c'è il prodotto nel ddt, faccio la differenza dei qty
+                        if (giacCode.equals(ddtCode)) {
+                            found = true;
+                            if (ddtQty-giacQty < 0) {
+                                toOrder.add(ddtCode + ";" + ddtDesc + ";" + (ddtQty-giacQty) * -1);
+                            }
+                        }
+                    }
+                    //se non c'è il prodotto nel ddt, creo la riga con qty 1
+                    if (found == false) {
+                        toOrder.add(ddtCode + ";" + ddtDesc + ";" + 1);
+                    }
+                    
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+                
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        Collections.sort(toOrder);
+        for (String order : toOrder) {
+            System.out.println(order);
+        }
+        
+        
+        /*Scanner scanner = new Scanner(System.in);
+        System.out.println("Digitare il Ddt:");
+        String toDdt = scanner.nextLine();
+        ArrayList<AnyFile> ddt = AnyFile.createObj(AnyFile.readAndSort(toDdt));
+            
+        System.out.println("Digitare la giacenza:");
+        String toGiac = scanner.nextLine();
+        ArrayList<AnyFile> giac = AnyFile.createObj(AnyFile.readAndSort(toGiac));
+        
+        
+        AnyFile.toOrder(ddt, giac);*/
+            
+            
+        
+    }
+    
+}
